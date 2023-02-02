@@ -44,7 +44,69 @@ def random_point(size):
 
     return randint(0, size - 1)
 
+def make_guess(board):
+    """
+        in this function if board type is player then this function is taking input from user
+        else taking a random number b/w a0 and board size.
+    """
+    # player
+    while True:
+        if board.type == "player":
+            row = int(input("Guess a row: "))
+            col = int(input("Guess a column: "))
+            if valid_coordinates(row, col, board):
+                print(f"Values must be betwen 0 and {board.size - 1}!")
+                continue    
+        else:
+            row = random_point(board.size)
+            col = random_point(board.size)
+        if (row, col) not in board.guesses:
+            board.guesses.append((row, col))
+            break
+        elif board.type == "player":
+            print("You can't guess the same coordinates twice!")
+    return (row, col)
 
+def play_game(computer_board, player_board):
+    """
+        Utilizing all the functions defined above. 
+    """
+    #player's turn 
+    while True:
+        print(player_board.name + "'s Board" )
+        player_board.print()
+        
+        print(computer_board.name + "'s Board" )
+        computer_board.print()
+        playerRow, playerCol = make_guess(player_board)
+        print("Player guessed: ", (playerRow, playerCol))
+        playerStatus = player_board.guess(playerRow, playerCol)
+        if playerStatus == "Hit":
+            scores["player"] += 1
+            print("Target hit by player")
+        else:
+            print("Player missed this time.")
+
+        computerRow, computerCol = make_guess(computer_board)
+        print("Computer guessed: ", (computerRow, computerCol))
+
+        computerStatus = computer_board.guess(computerRow, computerCol)
+        if computerStatus == "Hit":
+            scores["computer"] += 1
+            print("Target hit by computer")
+        else:
+            print("Computer missed this time.") 
+        
+        if scores["player"] == len(computer_board.ships):
+            print("Player Won")
+            break
+        if scores["computer"] == len(player_board.ships):
+            print("computer won")
+            break
+        
+        flag = input("Enter any key to continue or n to quit: ")
+        if flag == "n":
+            break
 
 def new_game():
 
