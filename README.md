@@ -1,31 +1,85 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Battleships Game
 
-Welcome Karol2401,
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Battleships game is a Python terminal game, which runs in the Code Institute mock terminal on Heroku.
 
-## Reminders
+The player has the opportunity to defeat the computer by finding its ships on the board before the computer finds user ships. Each ship occupies one grid on the board.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+DODAJ ZDJECIE
 
-## Creating the Heroku app
+## How to play
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
 
-1. `heroku/python`
-2. `heroku/nodejs`
+Battleships game is based on a popular game that required only a piece of paper and a pen. You can read more about it on https://en.wikipedia.org/wiki/Battleship_(game).
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+This version of the game requires the player's to enter a name and then generates two game boards for the user and the computer.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+The player can see where their ships are, indicated by an @ sign, but cannot see where the computer's ships are.
 
-Connect your GitHub repository and deploy as normal.
+Missed selections are marked with an X and ship hits with a *.
 
-## Constraints
+The player and the computer each round guess where the opponent's ship is located to sink it.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+The winner is whoever sinks all enemy ships first.
 
------
-Happy coding!
+## Features
+
+### Existing Features
+
+* Random board generation:
+  -  Ships are randomly placed on both the player and computer boards.
+  - The player cannot see where the computer's ships are.
+
+![Computer and player boards](/assets/images/Screenshot%202022-12-31%20at%2017.35.25.png)
+
+* Play against the computer
+
+* Accepts user input
+
+![Computer and player Guess](/assets/images/Screenshot%202022-12-31%20at%2017.35.25.png)
+
+
+* Input validation and error-checking
+  - You cannot enter coordinates outside the size of the grid
+  - You must enter numbers
+  - You cannot enter the same guess twice
+
+Dodaj Zdjecie
+
+* Date maintained in class instances
+
+## Data Model
+
+I use Board class as my model. The game create two instances of the Borad class to keep the player's and computer's board.
+
+The Board class store the board size, the number of ships, the position of the ships, the guesses against the board, and details such as the board type(player's board or computer) and the player's game.
+
+In addition, this class has the ability to print the current table and the ships on it, as well as a method for guessing and returning results.
+
+## Testing
+
+I have manually tested this project by doing the following:
+* Passed code through a PEP8 linter and confirmed there are no problems.
+* Tested in my local terminal and the Code Institute Heroku.
+
+### Bugs
+
+* No missing bugs
+
+### Validator Testing
+
+* PEP8
+  - No errors were returned from PEP8online.com
+
+## Deployment
+
+This project was deployed using Code Institute's mock terminal for heroku.
+
+* Steps for deployment:
+  - Frok or clone repository
+  - Create a new Heroku app
+  - Set the buildbacks to Python and NodeJS in that order
+  - Link the heroku app to the repository
+  - Click Deploy
+
+## Credits
