@@ -41,5 +41,39 @@ def random_point(size):
     """
     Helper function to return a random integer between 0 and size.
     """
-    
+
     return randint(0, size - 1)
+
+
+
+def new_game():
+
+    """
+    #Starts a new game.
+    """
+
+    size = 5
+    num_ships = 4
+    scores["computer"] = 0
+    scores["player"] = 0
+    print("-" * 35)
+    print(" BATTLESHIPS GAME!!")
+    print(f" Board Size: {size}. number of ships: {num_ships}")
+    print(" Top left corner is row: 0, col: 0")
+    print("-" * 35)
+    player_name = input("Please enter your name: \n ")
+    print("-" * 35)
+    
+    computer_board = Board(size, num_ships, "Computer", type="computer")
+    player_board = Board(size, num_ships, player_name, type="player")
+    
+
+    for _ in range(num_ships):
+        populate_board(player_board)
+        populate_board(computer_board)
+
+#     print("computer ships: ", computer_board.ships)
+
+    play_game(computer_board, player_board)
+    
+new_game()
