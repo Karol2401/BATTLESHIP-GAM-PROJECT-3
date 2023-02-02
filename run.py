@@ -1,11 +1,13 @@
 from random import randint
 
+scores = {"computer": 0, "player": 0}
+
+
 class Board:
-   
-    """ 
-    Main borad class.
+
     """
-   
+    Main borad class
+    """
     def __init__(self, size, num_ships, name, type):
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]
@@ -18,7 +20,7 @@ class Board:
     def print(self):
         for row in self.board:
             print(" ".join(row))
-    
+
     def guess(self, x, y):
         self.guesses.append((x, y))
         self.board[x][y] = "X"
@@ -37,17 +39,47 @@ class Board:
             if self.type == "player":
                 self.board[x][y] = "@"
 
+
 def random_point(size):
     """
-    Helper function to return a random integer between 0 and size.
+    Helper function to return a random integer between 0 and size
     """
-
     return randint(0, size - 1)
+
+
+def valid_coordinates(x, y, board):
+    """
+        Function for validating the coordinated.
+    """
+    if x < 0 or x >= board.size:
+        return True
+    if y < 0 or y >= board.size:
+        return True
+    return False
+
+
+def populate_board(board):
+    """
+        function for populating the board with ships
+    """
+    x = random_point(board.size)
+    y = random_point(board.size)
+    while True:
+        if (x, y) in board.ships:
+            x = random_point(board.size)
+            y = random_point(board.size)
+        else:
+            break
+    if board.type == "computer":
+        board.ships.append((x, y))
+    else:
+        board.ships.append((x, y))
+        board.board[x][y] = "@"
+
 
 def make_guess(board):
     """
-        in this function if board type is player then this function is taking input from user
-        else taking a random number b/w a0 and board size.
+        Player and opponent choices.
     """
     # player
     while True:
@@ -56,7 +88,7 @@ def make_guess(board):
             col = int(input("Guess a column: "))
             if valid_coordinates(row, col, board):
                 print(f"Values must be betwen 0 and {board.size - 1}!")
-                continue    
+                continue
         else:
             row = random_point(board.size)
             col = random_point(board.size)
@@ -67,16 +99,16 @@ def make_guess(board):
             print("You can't guess the same coordinates twice!")
     return (row, col)
 
+
 def play_game(computer_board, player_board):
     """
-        Utilizing all the functions defined above. 
+        Utilizing all the functions defined above.
     """
-    #player's turn 
     while True:
-        print(player_board.name + "'s Board" )
+        print(player_board.name + "'s Board")
         player_board.print()
-        
-        print(computer_board.name + "'s Board" )
+
+        print(computer_board.name + "'s Board")
         computer_board.print()
         playerRow, playerCol = make_guess(player_board)
         print("Player guessed: ", (playerRow, playerCol))
@@ -95,18 +127,19 @@ def play_game(computer_board, player_board):
             scores["computer"] += 1
             print("Target hit by computer")
         else:
-            print("Computer missed this time.") 
-        
+            print("Computer missed this time.")
+
         if scores["player"] == len(computer_board.ships):
             print("Player Won")
             break
         if scores["computer"] == len(player_board.ships):
             print("computer won")
             break
-        
+
         flag = input("Enter any key to continue or n to quit: ")
         if flag == "n":
             break
+
 
 def new_game():
 
@@ -125,10 +158,9 @@ def new_game():
     print("-" * 35)
     player_name = input("Please enter your name: \n ")
     print("-" * 35)
-    
+
     computer_board = Board(size, num_ships, "Computer", type="computer")
     player_board = Board(size, num_ships, player_name, type="player")
-    
 
     for _ in range(num_ships):
         populate_board(player_board)
@@ -137,5 +169,6 @@ def new_game():
 #     print("computer ships: ", computer_board.ships)
 
     play_game(computer_board, player_board)
-    
+
+
 new_game()
