@@ -5,7 +5,10 @@ Battleships game is a Python terminal game, which runs in the Code Institute moc
 
 The player has the opportunity to defeat the computer by finding its ships on the board before the computer finds user ships. Each ship occupies one grid on the board.
 
-DODAJ ZDJECIE
+A live version of this game can be found at this link:
+https://battleships-game1992.herokuapp.com/
+
+![Different devices creenshot](/assets/images/Screenshot%202023-02-02%20at%2011.55.32.png)
 
 ## How to play
 
@@ -30,13 +33,13 @@ The winner is whoever sinks all enemy ships first.
   -  Ships are randomly placed on both the player and computer boards.
   - The player cannot see where the computer's ships are.
 
-![Computer and player boards](/assets/images/Screenshot%202022-12-31%20at%2017.35.25.png)
+![Computer and player boards](/assets/images/Screenshot%202023-02-02%20at%2011.27.03.png)
 
 * Play against the computer
 
 * Accepts user input
 
-![Computer and player Guess](/assets/images/Screenshot%202022-12-31%20at%2017.35.25.png)
+![Computer and player Guess](/assets/images/Screenshot%202023-02-02%20at%2011.37.45.png)
 
 
 * Input validation and error-checking
@@ -44,7 +47,7 @@ The winner is whoever sinks all enemy ships first.
   - You must enter numbers
   - You cannot enter the same guess twice
 
-Dodaj Zdjecie
+![Coordinates](/assets/images/Screenshot%202023-02-02%20at%2011.43.16.png)
 
 * Date maintained in class instances
 
@@ -83,3 +86,6 @@ This project was deployed using Code Institute's mock terminal for heroku.
   - Click Deploy
 
 ## Credits
+* Code Institute for deployment terminal
+* Wikipedia for details of the battleships game
+* The basic structure of the code is taken from Portfolio Project Scope "ULTIMATE Battleships" 
